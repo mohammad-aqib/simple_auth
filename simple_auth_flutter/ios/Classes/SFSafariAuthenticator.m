@@ -8,6 +8,8 @@
 #import "SFSafariAuthenticator.h"
 #import <SafariServices/SafariServices.h>
 
+WebAuthenticator *authenticator;
+
 @implementation SFSafariAuthenticator
 
 + (SFSafariAuthenticator *) shared
@@ -19,6 +21,15 @@
     });
     return sharedObject;
 }
+
+-(void)setWebAuthenticator:(WebAuthenticator *) webAuthenticator {
+    authenticator = webAuthenticator;
+}
+
+-(WebAuthenticator *)getWebAuthenticator{
+    return authenticator;
+}
+
 + (NSMutableDictionary *) authenticators
 {
     static dispatch_once_t once;
@@ -55,6 +66,7 @@ SFAuthenticationSession *session;
 SFSafariViewController *controller;
 -(void) beginAuthentication:(WebAuthenticator *)authenticator viewController:(UIViewController *)viewController{
     @try{
+        [SFSafariAuthenticator.shared setWebAuthenticator:authenticator];
         NSString *scheme = authenticator.redirectUrl.scheme;
         if(@available(iOS 11.0, *) && authenticator.useSSO)
         {
@@ -148,6 +160,12 @@ SFSafariViewController *controller;
         }
     }
     return returnArray;
+}
+
+- (void)safariViewControllerDidFinish:(SFSafariViewController *)controller{
+    WebAuthenticator *authenticator = [SFSafariAuthenticator.shared getWebAuthenticator];
+    [authenticator cancel];
+    [SFSafariAuthenticator.shared dismisController];
 }
 
 @end
