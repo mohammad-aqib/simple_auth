@@ -2,9 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:simple_auth/simple_auth.dart' as simpleAuth;
-import 'package:simple_auth_flutter/basic_login_page.dart';
+import 'package:simple_auth_flutter_login_fix/basic_login_page.dart';
 
 class SimpleAuthFlutter implements simpleAuth.AuthStorage {
   static const MethodChannel _channel =

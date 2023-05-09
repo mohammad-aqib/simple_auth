@@ -1,3 +1,6 @@
+## [2.0.12] - 08-05-2023
+* Ios login issue fix
+
 ## [2.0.10] - 06-07-2021
 * Migrates to null-safety
 
