@@ -1,6 +1,6 @@
 name: simple_auth_flutter_login_fix
 description: (Fork of) Simple Auth is the simplest way to authenticate your users/apis. This plugin will securely store tokens/credentials as well as automatically present login UI when needed. This version fixes ios done button issue on login page.
-version: 1.0.2
+version: 1.0.5
 homepage: https://github.com/mohammad-aqib/simple_auth
 
 environment:
